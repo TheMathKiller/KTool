@@ -1,0 +1,25 @@
+############################
+ 0. 进入仓库根目录. 
+ 1. 执行generate_patch_tree.sh branch_name dir_file
+    该步骤生成file文件在该分支中的所有历史快照
+    快照如下
+	patch_file_name
+	        |
+			|---a
+			|---b
+			|---c
+			......
+			|---z
+ 2. a,b,c....z按照字母顺序依次对应该文件历史提交，由旧到新
+ 3. 按照自己的需求，可以任意修改任何历史提交中的，log, author, email, commit time等信息，以及文件本身内容
+ 4. 修改完毕后，执行fixer.sh，完成该分支的重构，重构后的分支名称为branch_name_c，加了_c后缀，代表clean
+ 5. 执行tag_refactor.sh branch_name_c可以将原来的所有tag移动到branch_name_c对应的提交上。
+ 
+##############################
+ rf2828_to_normal.sh完成rf2828格式的时间和时间数字之间的转化
+     Wed Apr 11 23:45:03 2018 +0800 ----> 20180411234503
+ 这个转化的目的是用来对比两个时间的新旧，大者新，小者旧
+
+##############################
+ generate_patch_tree_from_txt.sh
+ 为generate_patch_tree.sh的批量升级版dir_file可以存入一个txt档中作为传参给脚本
